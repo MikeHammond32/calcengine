@@ -16,7 +16,7 @@ public class Main {
 			}
 			for (double currentResult : results)
 				System.out.println(currentResult);
-		} else if (args.length ==3)
+		} else if (args.length == 3)
 			handleCommandLine(args);
 		else
 			System.out.println("Please provide an operation code and 2 numeric values");
@@ -26,7 +26,7 @@ public class Main {
     	System.out.println("Enter an operation and two numbers:");
 		Scanner scanner = new Scanner(System.in);
 		String userInput = scanner.nextLine();
-		String [] parts = userInput.split(regex:" ");
+		String [] parts = userInput.split(" ");
 		performOperation(parts);
 
 	}
@@ -37,6 +37,20 @@ public class Main {
     	double rightVal = valueFromWord(parts[2]);
     	double result = execute(opCode, leftVal, rightVal);
     	System.out.println(result);
+	}
+
+	private static char symbolFromOpCode(char opCode) {
+    	char[] opCodes =  {'a', 's', 'm', 'd'};
+    	char[] symbols =  {'+', '-', '*', '/'};
+    	char symbol = ' ';
+    	for (int index = 0; index < opCodes.length; index++) {
+			if (opCode == opCodes[index]) {
+				symbol = symbols[index];
+				break;
+			}
+		}
+
+    	return symbol;
 	}
 
 	private static void handleCommandLine(String[] args) {
